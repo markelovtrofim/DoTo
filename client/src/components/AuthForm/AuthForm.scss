@@ -1,0 +1,34 @@
+.auth--form {
+  position: relative;
+  height: 97vh;
+
+  &__window {
+    position: absolute;
+    margin: 0 auto;
+    top: 28%;
+    left: 0;
+    right: 0;
+    background-color: #26282C; //1A191F
+    width: 430px;
+    height: 400px;
+    text-align: center;
+    border-radius: 20px;
+    -webkit-box-shadow: 0 0 19px 6px rgba(0, 0, 0, 0.29);
+    -moz-box-shadow: 0 0 19px 6px rgba(0, 0, 0, 0.29);
+    box-shadow: 0 0 19px 6px rgba(0, 0, 0, 0.29);
+  }
+
+  &__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+  }
+
+  &__logo__text {
+    color: #ffffff;
+    font-size: 22px;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-left: 3px;
+  }
+}
