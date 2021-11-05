@@ -1,25 +1,34 @@
 import React, {useState} from 'react';
-import {Box, Container, IconButton, TextField} from "@mui/material";
+import {Box, Container, IconButton} from "@mui/material";
 import './AuthForm.scss';
 import SpaceFon from '../SpaceFon';
 import Logo from '../../assets/img/logo.png';
-import {makeStyles} from "@mui/styles";
 import {Button, Input} from '../common';
 
-const useInputStyles = makeStyles({
-  button: {
-    color: "#fff !important",
-    borderColor: "#fff !important",
-  },
-});
+export interface authDataType {
+  email: string | null
+  password: string | null
+}
 
 const AuthForm = () => {
-  const classes = useInputStyles();
-  const [load, setLoad] = useState(false);
+  const [authData, setAuthData] = useState<authDataType>({
+    email: null,
+    password: null
+  })
+  const [buttonLoad, setButtonLoad] = useState<boolean>(false);
+  const buttonClickHandler = () => {
+    setButtonLoad(true);
+    // ajax запрос
+     setTimeout(() => {
+       console.log(authData);
+       setButtonLoad(false);
+     }, 2000);
+    // пока log`a
+  }
   return (
-    <form className="auth--form">
+    <div className="auth--form">
       <SpaceFon/>
-      <div className="auth--form__window">
+      <form className="auth--form__window" onSubmit={e => e.preventDefault()}>
         <div className="auth--form__logo">
           <IconButton>
             <img src={Logo} alt="Reload" width={40} height={40}/>
@@ -33,13 +42,13 @@ const AuthForm = () => {
               width: 250,
             }}
           >
-            <Input/>
-            <Input/>
-            <Button/>
+            <Input name="Email" authData={authData} setAuthData={setAuthData}/>
+            <Input name="Password" authData={authData} setAuthData={setAuthData}/>
+            <Button buttonClickHandler={buttonClickHandler} buttonLoad={buttonLoad}/>
           </Box>
         </Container>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 

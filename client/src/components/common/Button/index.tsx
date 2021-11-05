@@ -1,22 +1,26 @@
-import React, {useState} from 'react';
+import React from 'react';
 import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import {makeStyles} from "@mui/styles";
 
+interface ButtonType {
+  buttonClickHandler: () => void
+  buttonLoad: boolean
+}
 
-const Button = () => {
+const Button: React.FC<ButtonType> = ({buttonClickHandler, buttonLoad}) => {
   const useButtonStyles = makeStyles({
     button: {
       color: "#fff !important",
       borderColor: "#fff !important",
     },
   });
-  const [load, setLoad] = useState(false);
   const classes = useButtonStyles();
   return (
     <div>
-      <LoadingButton size="large" fullWidth className={load && classes.button}
-                     disable={false} color="primary" loading={load} onClick={() => setLoad(!load)}
+      <LoadingButton size="large" fullWidth
+        // @ts-ignore
+                     className={buttonLoad && classes.button} color="primary" loading={buttonLoad} onClick={buttonClickHandler}
                      loadingPosition="end" variant="contained" endIcon={<SaveIcon/>}>
         Войти в аккаунт
       </LoadingButton>
