@@ -1,38 +1,43 @@
-import React, {Dispatch} from 'react';
+import React, {Dispatch, useState} from 'react';
 import {TextField} from "@mui/material";
-import {makeStyles} from "@mui/styles";
 import {authDataType} from "../../AuthForm";
 
 interface InputType {
   name: string
   authData: authDataType
   setAuthData: Dispatch<authDataType>
+  inputSuccess: boolean
+  setInputSuccess: Dispatch<boolean>
 }
 
-const Input: React.FC<InputType> = ({name, authData, setAuthData}) => {
-  const useInputStyles = makeStyles({
-    cssFocused: {},
-    notchedOutline: {
-      borderWidth: '1px',
-      borderColor: '#f2f3f4 !important'
-    },
-    button: {
-      color: "#fff !important",
-      borderColor: "#fff !important",
-    },
-  });
+const Input: React.FC<InputType> = ({name, authData, setAuthData, inputSuccess, setInputSuccess}) => {
+  let [error, setError] = useState<boolean>(false);
+
+  const emailControl = (email: string): void => {
+    let re = /^\S+@\S+\.\S+$/;
+    if (re.test(email)) {
+      setInputSuccess(true);
+      setError(false);
+    } else {
+      setError(true);
+      setInputSuccess(false);
+    }
+  };
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setAuthData({...authData, [event.target.name]: event.target.value});
   };
   return (
-    <TextField autoComplete='off' onChange={inputChangeHandler} name={name.toLowerCase()}
-               fullWidth label={name} color="secondary" margin="dense"
+    <TextField autoComplete='off'
+               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                 inputChangeHandler(event);
+                 if (name === "Mail") {
+                   emailControl(event.target.value)
+                 }
+               }}
+               name={name.toLowerCase()}
+               fullWidth focused label={name} error={error} color={inputSuccess && name === "Mail" ? "success" : "primary"}
+               helperText={error ? "Поле почты введено неверно или не введено вообще." : null} margin="dense"
                InputProps={{
-                 classes: {
-                   focused: useInputStyles().cssFocused,
-                   notchedOutline: useInputStyles().notchedOutline,
-                 },
-                 inputMode: "numeric",
                  style: {
                    color: "white"
                  }
@@ -41,7 +46,8 @@ const Input: React.FC<InputType> = ({name, authData, setAuthData}) => {
                  style: {
                    color: "white"
                  }
-               }}/>
+               }}
+    />
   );
 };
 

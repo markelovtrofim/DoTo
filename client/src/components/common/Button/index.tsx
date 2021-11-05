@@ -6,9 +6,10 @@ import {makeStyles} from "@mui/styles";
 interface ButtonType {
   buttonClickHandler: () => void
   buttonLoad: boolean
+  inputSuccess: boolean
 }
 
-const Button: React.FC<ButtonType> = ({buttonClickHandler, buttonLoad}) => {
+const Button: React.FC<ButtonType> = ({buttonClickHandler, buttonLoad, inputSuccess}) => {
   const useButtonStyles = makeStyles({
     button: {
       color: "#fff !important",
@@ -19,8 +20,7 @@ const Button: React.FC<ButtonType> = ({buttonClickHandler, buttonLoad}) => {
   return (
     <div>
       <LoadingButton size="large" fullWidth
-        // @ts-ignore
-                     className={buttonLoad && classes.button} color="primary" loading={buttonLoad} onClick={buttonClickHandler}
+                     className={buttonLoad && classes.button} disabled={!inputSuccess} color="primary" loading={buttonLoad} onClick={buttonClickHandler}
                      loadingPosition="end" variant="contained" endIcon={<SaveIcon/>}>
         Войти в аккаунт
       </LoadingButton>

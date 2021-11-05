@@ -5,12 +5,12 @@
   &__window {
     position: absolute;
     margin: 0 auto;
-    top: 28%;
+    top: 25%;
     left: 0;
     right: 0;
     background-color: #26282C; //1A191F
     width: 430px;
-    height: 400px;
+    padding: 20px 0;
     text-align: center;
     border-radius: 20px;
     -webkit-box-shadow: 0 0 19px 6px rgba(0, 0, 0, 0.29);
@@ -22,7 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 15px 0;
+    margin-bottom: 10px;
   }
 
   &__logo__text {
@@ -30,5 +30,35 @@
     font-size: 22px;
     font-family: 'Roboto Condensed', sans-serif;
     margin-left: 3px;
+  }
+
+  &__link--box {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  &__link {
+    color: #1a76d5;
+    text-decoration: none;
+    position: relative;
+    margin-left: 5px;
+  }
+
+  &__link:before {
+    content: "";
+    width: 0;
+    height: 1px;
+    background-color: #1a76d5;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    transition: width 0.3s;
+  }
+
+  &__link:hover:before {
+    width: 100%;
   }
 }
