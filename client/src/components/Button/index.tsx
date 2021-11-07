@@ -20,7 +20,7 @@ const Button: React.FC<ButtonType> = ({buttonClickHandler, buttonLoad, inputSucc
   return (
     <div>
       <LoadingButton size="large" fullWidth
-                     className={buttonLoad && classes.button} disabled={!inputSuccess} color="primary" loading={buttonLoad} onClick={buttonClickHandler}
+                     className={buttonLoad && classes.button} color="primary" loading={buttonLoad} onClick={buttonClickHandler}
                      loadingPosition="end" variant="contained" endIcon={<SaveIcon/>}>
         Войти в аккаунт
       </LoadingButton>

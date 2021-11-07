@@ -1,0 +1,13 @@
+.auth--logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+
+  &__text {
+    color: #ffffff;
+    font-size: 22px;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-left: 3px;
+  }
+}
