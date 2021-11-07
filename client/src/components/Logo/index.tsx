@@ -1,6 +1,6 @@
 import React from 'react';
 import {IconButton} from '@mui/material';
-import {LogoIcon} from '../../../assets/img';
+import {LogoIcon} from '../../assets/img';
 import './Logo.scss';
 
 interface LogoType {

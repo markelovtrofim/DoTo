@@ -1,53 +1,22 @@
-import React, {Dispatch, useState} from 'react';
-import {TextField} from "@mui/material";
-import {authDataType} from "../../AuthForm";
+import React, {Dispatch} from 'react';
+import './Input.scss';
+import {UserDataType} from '../../types/types';
 
-interface InputType {
+interface InputPropsType {
   name: string
-  authData: authDataType
-  setAuthData: Dispatch<authDataType>
-  inputSuccess: boolean
-  setInputSuccess: Dispatch<boolean>
+  userData: UserDataType
+  collectUserData: Dispatch<UserDataType>
 }
 
-const Input: React.FC<InputType> = ({name, authData, setAuthData, inputSuccess, setInputSuccess}) => {
-  let [error, setError] = useState<boolean>(false);
-
-  const emailControl = (email: string): void => {
-    let re = /^\S+@\S+\.\S+$/;
-    if (re.test(email)) {
-      setInputSuccess(true);
-      setError(false);
-    } else {
-      setError(true);
-      setInputSuccess(false);
-    }
-  };
+const Input: React.FC<InputPropsType> = ({name, collectUserData, userData}) => {
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setAuthData({...authData, [event.target.name]: event.target.value});
+    collectUserData({...userData, [event.target.name]: event.target.value});
   };
   return (
-    <TextField autoComplete='off'
-               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                 inputChangeHandler(event);
-                 if (name === "Mail") {
-                   emailControl(event.target.value)
-                 }
-               }}
-               name={name.toLowerCase()}
-               fullWidth focused label={name} error={error} color={inputSuccess && name === "Mail" ? "success" : "primary"}
-               helperText={error ? "Поле почты введено неверно или не введено вообще." : null} margin="dense"
-               InputProps={{
-                 style: {
-                   color: "white"
-                 }
-               }}
-               InputLabelProps={{
-                 style: {
-                   color: "white"
-                 }
-               }}
-    />
+    <div className="input">
+      <label className="input__label" htmlFor="input">{name}</label>
+      <input onChange={inputChangeHandler} name={name.toLowerCase()} className="input__field" type="text" placeholder={`Введите ${name.toLowerCase()}`}/>
+    </div>
   );
 };
 

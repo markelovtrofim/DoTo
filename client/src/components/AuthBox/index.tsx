@@ -1,6 +1,6 @@
 import React from 'react';
 import './AuthBox.scss';
-import SpaceFon from "../../SpaceFon";
+import {SpaceFon} from "../index";
 
 interface AuthBoxType {
   children: React.ReactNode

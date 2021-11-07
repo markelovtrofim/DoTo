@@ -1,5 +1,14 @@
 {
   "dependencies": {
-    "@mui/lab": "^5.0.0-alpha.53"
+    "@mui/lab": "^5.0.0-alpha.53",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-validator": "^6.13.0",
+    "mongoose": "^6.0.12",
+    "nodemon": "^2.0.14"
+  },
+  "scripts": {
+    "server": "nodemon server"
   }
 }
