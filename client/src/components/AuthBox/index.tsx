@@ -1,6 +1,5 @@
 import React from 'react';
 import './AuthBox.scss';
-import {SpaceFon} from "../index";
 
 interface AuthBoxType {
   children: React.ReactNode
@@ -9,12 +8,11 @@ interface AuthBoxType {
 const AuthBox = ({children}: AuthBoxType) => {
   return (
     <div className="auth--box">
-      <SpaceFon/>
-      <div className="auth--box__window">
+      <div className="auth--box__container">
         {children}
       </div>
     </div>
-  )
+  );
 };
 
 export default AuthBox;

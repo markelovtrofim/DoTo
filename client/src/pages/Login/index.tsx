@@ -1,19 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {AuthBox, Input} from '../../components';
-import {Logo, Button} from "../../components";
-import {saveUser, setErrors} from "../../redux/auth-reducer";
-import {useDispatch, useSelector} from "react-redux";
+import {AuthBox, Button, Input, Link, Logo} from "../../components";
 import {ErrorType, UserDataType} from "../../types/types";
-import {Link} from "../../components";
+import {useDispatch, useSelector} from "react-redux";
+import {login, setErrors} from "../../redux/auth-reducer";
 
-const Registration = () => {
+const Login = () => {
   // @ts-ignore
   useEffect(() => {
     return dispatch(setErrors(null));
-  }, [])
+  }, []);
   const [userData, collectUserData] = useState<UserDataType>({
     email: '',
-    name: '',
     password: ''
   });
   const dispatch = useDispatch();
@@ -24,30 +21,28 @@ const Registration = () => {
     pending: state.auth.pending, // типизировать
   }))
   const buttonClickHandler = () => {
-    dispatch(saveUser(userData));
-  }
-  const names: UserDataType = {
+    dispatch(login(userData))
+  };
+  const names: any = {
     email: "Email",
-    name: "Name",
     password: "Password"
   };
   return (
     <AuthBox>
-      <Logo path="Registration"/>
-      <h1>Registration page</h1>
+      <Logo path="Login"/>
+      <h1>Login page</h1>
       <form onSubmit={event => event.preventDefault()}>
         <Input name={names.email} collectUserData={collectUserData} userData={userData} error={state.errors && state.errors.fields[names.email.toLowerCase()]}/>
-        <Input name={'Name'} collectUserData={collectUserData} userData={userData} error={state.errors && state.errors.fields['name']}/>
         <Input name={names.password} collectUserData={collectUserData} userData={userData} error={state.errors && state.errors.fields[names.password.toLowerCase()]}/>
         {state.errors ? state.errors.messages.map((error: ErrorType) => <h3 style={{
           color: "rgb(206,39,39)",
           marginBottom: "20px"
         }}>{error.message}</h3>) : ""}
-        <Button onClick={buttonClickHandler} pending={state.pending}>Зарегистрироваться</Button>
-        <Link path="/login" text="Уже есть аккаунт?">Login</Link>
+        <Button onClick={buttonClickHandler} pending={state.pending}>Войти в аккаунт</Button>
+        <Link path="/registration" text="Нет аккаунта?">Sign In</Link>
       </form>
     </AuthBox>
   );
 };
 
-export default Registration;
+export default Login;

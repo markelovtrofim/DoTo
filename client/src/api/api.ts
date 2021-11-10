@@ -10,6 +10,9 @@ export const authAPI = {
     return instance.post('auth/registration', {email, name, password})
       .then(response => response.data);
   },
-  // login(email: string, name: string) {},
+  login({email, password}: UserDataType) {
+    return instance.post('auth/login', {email, password})
+      .then(response => response.data);
+  },
   // logout() {}
 };

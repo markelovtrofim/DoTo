@@ -1,0 +1,26 @@
+.link {
+  margin-top: 20px;
+  font-size: 14px;
+
+  &__field {
+    color: #1a76d5;
+    text-decoration: none;
+    position: relative;
+    margin-left: 5px;
+  }
+
+  &__field:before {
+    content: "";
+    width: 0;
+    height: 1px;
+    background-color: #1a76d5;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    transition: width 0.3s;
+  }
+
+  &__field:hover:before {
+    width: 100%;
+  }
+}

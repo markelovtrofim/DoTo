@@ -10,6 +10,14 @@ export interface ErrorType {
 
 export interface UserDataType {
   email: string
-  name: string
+  name?: string
   password: string
+}
+
+export interface LoginDataType {
+  userData: {
+    token: 'string',
+    id: number,
+    name: string
+  }
 }
