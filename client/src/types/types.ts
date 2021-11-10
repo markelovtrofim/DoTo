@@ -5,8 +5,7 @@ export enum StatusEnum {
 }
 
 export interface ErrorType {
-  message: string,
-  field: string
+  message: string
 }
 
 export interface UserDataType {

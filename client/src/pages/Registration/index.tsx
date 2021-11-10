@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {AuthBox, Input} from '../../components';
 import {Logo, Button} from "../../components";
-import {saveUser, setErrors} from "../../redux/auth-reducer";
+import {saveUser} from "../../redux/auth-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {ErrorType, UserDataType} from "../../types/types";
 
@@ -20,17 +20,21 @@ const Registration = () => {
   }))
   const buttonClickHandler = () => {
     dispatch(saveUser(userData));
-    dispatch(setErrors(null))
   }
+  const names: UserDataType = {
+    email: "Email",
+    name: "Name",
+    password: "Password"
+  };
   return (
     <AuthBox>
       <Logo path="Registration"/>
       <h1>Registration page</h1>
       <form onSubmit={event => event.preventDefault()}>
-        <Input name="Email" collectUserData={collectUserData} userData={userData}/>
-        <Input name="Name" collectUserData={collectUserData} userData={userData}/>
-        <Input name="Password" collectUserData={collectUserData} userData={userData}/>
-        {state.errors ? state.errors.map((error: ErrorType) => <h3 style={{
+        <Input name={names.email} collectUserData={collectUserData} userData={userData} error={state.errors && state.errors.fields[names.email.toLowerCase()]}/>
+        <Input name={names.name} collectUserData={collectUserData} userData={userData} error={state.errors && state.errors.fields[names.name.toLowerCase()]}/>
+        <Input name={names.password} collectUserData={collectUserData} userData={userData} error={state.errors && state.errors.fields[names.password.toLowerCase()]}/>
+        {state.errors ? state.errors.messages.map((error: ErrorType) => <h3 style={{
           color: "rgb(206,39,39)",
           marginBottom: "20px"
         }}>{error.message}</h3>) : ""}

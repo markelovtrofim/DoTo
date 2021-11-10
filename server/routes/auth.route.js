@@ -11,7 +11,10 @@ router.post("/registration", [
     const {email, name, password} = request.body;
     const isUsed = await User.findOne({email});
     if (isUsed) {
-      return response.json({status: 300, errors: [{message: 'Данный email уже занят', field: 'email'}]});
+      return response.json({status: 300, errors: {
+        fields: {email: 'email'},
+        messages: [{message: 'Данный email уже занят'}]
+      }});
     }
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
@@ -21,8 +24,11 @@ router.post("/registration", [
       //   email: 'Поле email введено не верно',
       //   password: 'Пароль должен содержать минимум 6 символом и максимиум 20.'
       // }
-      const errorsObject = [];
-      errors.errors.map(error => errorsObject.push({message: error.msg, field: error.param}));
+      const errorsObject = {fields: {}, messages: []};
+      errors.errors.map(error => {
+        errorsObject.fields[error.param] = error.param;
+        errorsObject.messages.push({message: error.msg});
+      });
       console.log({status: 400, errors: errorsObject})
       return response.json({status: 400, errors: errorsObject})
     }

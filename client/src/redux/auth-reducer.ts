@@ -6,10 +6,14 @@ const SET_ERRORS = 'SET_ERRORS';
 const SET_IS_AUTH = 'SET_IS_AUTH';
 
 export interface initialStateType {
-  errors: Array<ErrorType> | null
-  pending: boolean,
+  errors: {
+    fields: {email?: string, name?: string, password?: string}
+    messages: Array<ErrorType>
+  } | null
+  pending: boolean
   isAuth: boolean
 }
+
 const initialState: initialStateType = {
   errors: null,
   pending: false,
