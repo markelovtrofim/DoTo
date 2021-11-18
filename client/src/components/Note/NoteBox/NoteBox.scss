@@ -1,0 +1,29 @@
+.note--box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 17px 15px;
+  background-color: #242426;
+  margin-top: 3px;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #292929;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon__box {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    position: relative;
+  }
+
+  &__right--icon {
+
+  }
+}

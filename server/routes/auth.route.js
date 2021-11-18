@@ -51,7 +51,10 @@ router.post("/registration", middlewareErrors, async (request, response) => {
   }
 });
 
-router.post("/login", middlewareErrors, async (request, response) => {
+router.post("/login", [
+  check('email', 'Поле email введено не верно').isEmail(),
+  check('password', 'Password обязателен для ввода').isLength({min: 1})
+], async (request, response) => {
   try {
     const {email, password} = request.body;
     checkMiddlewareErrors(request, response);
@@ -75,7 +78,7 @@ router.post("/login", middlewareErrors, async (request, response) => {
       } else {
         return response.json({
           status: 300, errors: {
-            fields: {email: 'password'},
+            fields: {password: 'password'},
             messages: [{message: 'Password не верный'}]
           }
         });

@@ -8,6 +8,7 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 app.use('/api/auth', require('./routes/auth.route'));
+app.use('/api/todo', require('./routes/todo.route'));
 
 const Start = async () => {
   try {
@@ -23,4 +24,4 @@ const Start = async () => {
   }
 };
 
-Start().then(r => null);
+Start().then(response => null);

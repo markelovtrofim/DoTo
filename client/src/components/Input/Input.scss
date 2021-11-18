@@ -53,4 +53,28 @@
     color: rgb(206,39,39);
   }
 
+  &__helper {
+    &__box {
+      position: absolute;
+      right: 0;
+      top: -22px;
+    }
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: none;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 11px;
+    transition: color 0.6s;
+    &:hover, &:focus {
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+}
+
+.password--eye {
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  cursor: pointer;
 }
