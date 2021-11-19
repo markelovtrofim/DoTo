@@ -1,28 +1,23 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Box, Button, Logo, Note} from '../../components';
 import {logout} from '../../redux/reducers/auth-reducer';
-import {postNote} from '../../redux/reducers/todo-reducer';
+import {getTodos, postNote} from '../../redux/reducers/todo-reducer';
 import {useDispatch, useSelector} from 'react-redux';
 import './Main.scss';
 import CancelIcon from '@mui/icons-material/Cancel';
 import PersonIcon from '@mui/icons-material/Person';
 import {AppStateType} from "../../redux/store";
-import {getPending, getTodos} from "../../redux/selectors/todo-selector";
-
-
-const notesTestArray = [
-  {completed: false, important: false, body: "This is very big note nigga bitch bus"},
-  {completed: true, important: false, body: "This is very big note nigga bitch bus"},
-  {completed: false, important: true, body: "This is very big note nigga bitch bus"},
-  {completed: true, important: true, body: "This is very big note nigga bitch bus"},
-];
+import {getPending, getTodosData} from "../../redux/selectors/todo-selector";
 
 const Main: React.FC = () => {
   const dispatch = useDispatch();
   const pending = useSelector((state: AppStateType) => getPending(state));
-  const todos = useSelector((state: AppStateType) => getTodos(state));
+  const todos = useSelector((state: AppStateType) => getTodosData(state));
   // @ts-ignore
   const userData = JSON.parse(localStorage.getItem('userData'));
+  useEffect(() => {
+    dispatch(getTodos(userData.id))
+  }, [])
   const [noteData, setNoteData] = useState<string>('');
   return (
     <Box large>
@@ -42,7 +37,7 @@ const Main: React.FC = () => {
           }}>
             <input onChange={(event) => setNoteData(event.target.value)}/>
             <Button onClick={() => {
-              dispatch(postNote(userData.userId, noteData))
+              dispatch(postNote(userData.id, noteData))
             }} pending={pending} fullwidth variant="link" size="small">Published</Button>
           </div>
           {todos.map((note: any) => <Note completed={note.completed} important={note.important} body={note.text}/>)}

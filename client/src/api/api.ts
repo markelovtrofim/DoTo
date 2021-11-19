@@ -17,8 +17,19 @@ export const authAPI = {
 };
 
 export const todoAPI = {
+  getTodos(userId: string) {
+    return instance.get('api/todo/', {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      params: {userId}
+    }).then(response => {
+      console.log(response.data);
+      return response.data
+    });
+  },
   postNote({userId, text}: TodoType) {
-    return instance.post('/api/todo/add', {userId, text})
+    return instance.post('api/todo/add', {userId, text})
       .then(response => response.data);
   },
 };

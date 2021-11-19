@@ -29,6 +29,6 @@ export interface InputNamesType {
 }
 
 export interface TodoType {
-  userId: number,
-  text: string
+  userId: string,
+  text?: string
 }
