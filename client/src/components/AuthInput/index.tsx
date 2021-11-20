@@ -1,5 +1,5 @@
 import React, {Dispatch, useState} from 'react';
-import './Input.scss';
+import './AuthInput.scss';
 import {UserDataType} from '../../types/types';
 import classNames from "classnames";
 import VisibilityIcon from '@mui/icons-material/Visibility';

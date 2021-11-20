@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Button, Logo, Note} from '../../components';
+import {Box, Button, Logo, MainInput, Note} from '../../components';
 import {logout} from '../../redux/reducers/auth-reducer';
 import {getTodos, postNote} from '../../redux/reducers/todo-reducer';
 import {useDispatch, useSelector} from 'react-redux';
@@ -33,14 +33,10 @@ const Main: React.FC = () => {
         </div>
         <div className="main__content">
           <div style={{
-            display: 'flex'
           }}>
-            <input onChange={(event) => setNoteData(event.target.value)}/>
-            <Button onClick={() => {
-              dispatch(postNote(userData.id, noteData))
-            }} pending={pending} fullwidth variant="link" size="small">Published</Button>
+            <MainInput setNoteData={setNoteData} userData={userData} noteData={noteData}/>
           </div>
-          {todos.map((note: any) => <Note completed={note.completed} important={note.important} body={note.text}/>)}
+          {todos.map((note: any) => <Note noteId={note._id} userId={note.owner} completed={note.completed} important={note.important} body={note.text}/>)}
         </div>
       </div>
     </Box>

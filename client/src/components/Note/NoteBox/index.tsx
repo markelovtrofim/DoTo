@@ -4,19 +4,21 @@ import classNames from "classnames";
 
 interface NoteBoxPropsType {
   leftIcon: any
-  rightIcon?: any
+  rightIcon: Array<any>
 }
 
 const NoteBox: React.FC<NoteBoxPropsType> = ({leftIcon, rightIcon, children}) => {
   return (
     <div className="note--box">
       <div className="note--box__left">
-        <div className="note-box__icon__box">
+        <div className="note--box__icon__box">
           {leftIcon}
         </div>
-        {children}
+        <div className="note--box__body">
+          {children}
+        </div>
       </div>
-      <div className={classNames("note-box__icon__box", "note-box__right--icon")}>{rightIcon}</div>
+      <div className="note--box__right--icon">{rightIcon ? rightIcon.map(icon => icon) : null}</div>
     </div>
   );
 };

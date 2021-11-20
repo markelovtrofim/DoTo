@@ -1,22 +1,4 @@
 .note {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 17px 15px;
-  background-color: #242426;
-  margin-top: 3px;
-  border-radius: 5px;
-
-  &:hover {
-    background-color: #292929;
-  }
-
-  &__left {
-    display: flex;
-    align-items: center;
-  }
-
-
   // Check
   &__check__box {
     cursor: pointer;
@@ -68,7 +50,6 @@
   // Text
   &__text {
     font-size: 15px;
-    margin-left: 10px;
   }
 
   &__text__completed {
@@ -95,5 +76,17 @@
 
   &__important__active:active {
     fill: #51609d !important;
+  }
+
+  // Delete
+  &__delete {
+    cursor: pointer;
+    fill: #ea2227 !important;
+    &:hover {
+      fill: #ff161b !important;
+    }
+    &:active {
+      fill: #9A181f !important;
+    }
   }
 }

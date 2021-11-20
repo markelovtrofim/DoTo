@@ -20,16 +20,18 @@
   }
 
   &--large {
+    position: relative;
     text-align: left;
-    width: auto;
-    top: 5%;
-    bottom: 5%;
-    left: 10%;
-    right: 10%;
+    top: 0;
+    margin-top: 50px;
+    width: 1400px;
+    min-height: 600px;
     &__container {
       max-width: 100%;
       margin: 0;
     }
   }
-
+  &__footer {
+    height: 50px;
+  }
 }

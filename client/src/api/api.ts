@@ -32,4 +32,16 @@ export const todoAPI = {
     return instance.post('api/todo/add', {userId, text})
       .then(response => response.data);
   },
+  deleteNote(noteId: string) {
+    return instance.delete(`api/todo/delete/${noteId}`)
+      .then(response => response.data);
+  },
+  completedNote(noteId: string) {
+    return instance.put(`api/todo/completed/${noteId}`)
+      .then(response => response.data);
+  },
+  importantNote(noteId: string) {
+    return instance.put(`api/todo/important/${noteId}`)
+      .then(response => response.data);
+  },
 };

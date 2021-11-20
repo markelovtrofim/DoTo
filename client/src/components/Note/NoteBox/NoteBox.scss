@@ -17,13 +17,19 @@
   }
 
   &__icon__box {
+    display: flex;
     cursor: pointer;
-    width: 20px;
     height: 20px;
     position: relative;
   }
 
   &__right--icon {
+    display: flex;
+  }
 
+  &__body {
+    max-width: 1205px;
+    word-break: break-word;
+    padding-left: 15px;
   }
 }

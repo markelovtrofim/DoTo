@@ -30,12 +30,12 @@ const todoReducer = (state: initialStateType = initialState, action: actionType)
     case SET_TODO_ARRAY:
       return {
         ...state,
-        todos: action.todo
+        todos: action.todo.reverse()
       }
     case SET_TODO_OBJECT:
       return {
         ...state,
-        todos: [...state.todos, action.todo]
+        todos: [action.todo, ...state.todos]
       }
     case SET_PENDING:
       return {
@@ -76,7 +76,6 @@ export const getTodos = (userId: string) => async (dispatch: any) => {
   dispatch(setPending(false));
 }
 
-
 export const postNote = (userId: string, text: string) => async (dispatch: any) => {
   dispatch(setPending(true));
   const data = await todoAPI.postNote({userId, text});
@@ -84,5 +83,19 @@ export const postNote = (userId: string, text: string) => async (dispatch: any) 
   dispatch(setPending(false));
 };
 
+export const deleteNote = (noteId: string, userId: string) => async (dispatch: any) => {
+  await todoAPI.deleteNote(noteId);
+  dispatch(getTodos(userId));
+}
+
+export const completedNote = (noteId: string, userId: string) => async (dispatch: any) => {
+  const todo = await todoAPI.completedNote(noteId);
+  dispatch(getTodos(userId));
+}
+
+export const importantNote = (noteId: string, userId: string) => async (dispatch: any) => {
+  await todoAPI.importantNote(noteId);
+  dispatch(getTodos(userId));
+}
 
 export default todoReducer;
