@@ -89,7 +89,7 @@ export const deleteNote = (noteId: string, userId: string) => async (dispatch: a
 }
 
 export const completedNote = (noteId: string, userId: string) => async (dispatch: any) => {
-  const todo = await todoAPI.completedNote(noteId);
+  await todoAPI.completedNote(noteId);
   dispatch(getTodos(userId));
 }
 

@@ -29,11 +29,11 @@ const Note: React.FC<NotePropsType> = ({body, completed, important, noteId, user
         <CheckIcon className={classNames("note__check", {"note__check__completed": completed})}/>
       </div>}
       // right
-      rightIcon={[<StarIcon onClick={() => {
+      rightIcon={[{id: 1, icon: <StarIcon onClick={() => {
         dispatch(importantNote(noteId, userId))
-      }} className={classNames("note__important", {"note__important__active": important})}/>, <Delete onClick={() => {
+      }} className={classNames("note__important", {"note__important__active": important})}/>}, {id: 2, icon: <Delete onClick={() => {
         dispatch(deleteNote(noteId, userId))
-      }} className="note__delete"/>]}>
+      }} className="note__delete"/>}]}>
 
       <span className={classNames("note__text", {"note__text__completed": completed})}>
         {body}

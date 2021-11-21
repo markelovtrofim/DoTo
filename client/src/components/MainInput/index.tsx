@@ -15,9 +15,9 @@ const MainInput: React.FC<MainInputType> = ({setNoteData, userData, noteData}) =
   const dispatch = useDispatch();
   return (
     <div style={{marginBottom: '30px'}}>
-      <NoteBox leftIcon={<Create/>} rightIcon={[<Add style={{cursor: "pointer"}} onClick={() => {
+      <NoteBox leftIcon={<Create/>} rightIcon={[{id: 1, icon: <Add style={{cursor: "pointer"}} onClick={() => {
         dispatch(postNote(userData.id, noteData))
-      }}/>]}>
+      }}/>}]}>
         <textarea className="main--input" placeholder="Введите текст..." onChange={(event) => {
           setNoteData(event.target.value)
         }}/>

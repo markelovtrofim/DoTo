@@ -1,6 +1,5 @@
 import React from 'react';
 import './NoteBox.scss';
-import classNames from "classnames";
 
 interface NoteBoxPropsType {
   leftIcon: any
@@ -18,7 +17,7 @@ const NoteBox: React.FC<NoteBoxPropsType> = ({leftIcon, rightIcon, children}) =>
           {children}
         </div>
       </div>
-      <div className="note--box__right--icon">{rightIcon ? rightIcon.map(icon => icon) : null}</div>
+      <div className="note--box__right--icon">{rightIcon ? rightIcon.map(icon => <div key={icon.id}>{icon.icon}</div>) : null}</div>
     </div>
   );
 };
